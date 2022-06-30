@@ -7,7 +7,7 @@ import grpc_pb2_grpc
 
 dictValues = {}
 
-class GreeterServicer(grpc_pb2_grpc.GreeteServicer):
+class GreeterServicer(grpc_pb2_grpc.GreeterServicer):
     def __init__(self):
         self.id = 0
 
