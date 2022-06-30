@@ -18,10 +18,8 @@ class GreeterServicer(grpc_pb2_grpc.GreeterServicer):
 
     def getUser(self, request, context):
         if request.id in dictValues:
-            usuario = grpc_pb2.User(
-                id = request.id,
-                valores = dictValues[request.id]
-            )
+            usuario = grpc_pb2.User(id = request.id, valores = dictValues[request.id])
+            print(usuario)
         else:
             print("Nao existe o usuario desejado!")
         return usuario
@@ -31,7 +29,7 @@ class GreeterServicer(grpc_pb2_grpc.GreeterServicer):
             dictValues.pop(request.id)
         else:
             print("Nao existe o usuario desejado!")
-        response = grpc_pb2.vazio()
+        response = grpc_pb2.mensagemVazia()
         return response 
     
     def updateUser(self, request, context):
@@ -42,12 +40,12 @@ class GreeterServicer(grpc_pb2_grpc.GreeterServicer):
         update = grpc_pb2.requestUpdate(id=request.id, valores=str(dictValues[request.id]))
         return update
     
-    def serve():
-        server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
-        grpc_pb2_grpc.add_GreeterServicer_to_server(GreeterServicer(), server)
-        server.add_insecure_port("localhost: 9090")
-        server.start()
-        server.wait_for_termination()
+def serve():
+    server = grpc.server(futures.ThreadPoolExecutor(max_workers=1))
+    grpc_pb2_grpc.add_GreeterServicer_to_server(GreeterServicer(), server)
+    server.add_insecure_port("localhost: 9090")
+    server.start()
+    server.wait_for_termination()
 
-    if __name__ == "__main__":
-        serve()
+if __name__ == "__main__":
+    serve()

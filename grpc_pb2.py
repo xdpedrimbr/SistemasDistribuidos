@@ -14,14 +14,22 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ngrpc.proto\x12\x05greet\"#\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07payload\x18\x02 \x01(\t\"$\n\x05Users\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07payload\x18\x02 \x01(\t\",\n\rrequestUpdate\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07payload\x18\x02 \x01(\t\"\x19\n\x0brequestUser\x12\n\n\x02id\x18\x01 \x01(\x03\x32\xc2\x01\n\x07Greeter\x12)\n\ncreateUser\x12\x0b.greet.User\x1a\x0c.greet.Users\"\x00\x12-\n\x07getUser\x12\x12.greet.requestUser\x1a\x0c.greet.Users\"\x00\x12)\n\ndeleteUser\x12\x0b.greet.User\x1a\x0c.greet.Users\"\x00\x12\x32\n\nupdateUser\x12\x14.greet.requestUpdate\x1a\x0c.greet.Users\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ngrpc.proto\x12\x05greet\"\x0f\n\rmensagemVazia\"#\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\"$\n\x05Users\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\",\n\rrequestUpdate\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\"\x19\n\x0brequestUser\x12\n\n\x02id\x18\x01 \x01(\x03\x32\xca\x01\n\x07Greeter\x12)\n\ncreateUser\x12\x0b.greet.User\x1a\x0c.greet.Users\"\x00\x12-\n\x07getUser\x12\x12.greet.requestUser\x1a\x0c.greet.Users\"\x00\x12\x31\n\ndeleteUser\x12\x0b.greet.User\x1a\x14.greet.mensagemVazia\"\x00\x12\x32\n\nupdateUser\x12\x14.greet.requestUpdate\x1a\x0c.greet.Users\"\x00\x62\x06proto3')
 
 
 
+_MENSAGEMVAZIA = DESCRIPTOR.message_types_by_name['mensagemVazia']
 _USER = DESCRIPTOR.message_types_by_name['User']
 _USERS = DESCRIPTOR.message_types_by_name['Users']
 _REQUESTUPDATE = DESCRIPTOR.message_types_by_name['requestUpdate']
 _REQUESTUSER = DESCRIPTOR.message_types_by_name['requestUser']
+mensagemVazia = _reflection.GeneratedProtocolMessageType('mensagemVazia', (_message.Message,), {
+  'DESCRIPTOR' : _MENSAGEMVAZIA,
+  '__module__' : 'grpc_pb2'
+  # @@protoc_insertion_point(class_scope:greet.mensagemVazia)
+  })
+_sym_db.RegisterMessage(mensagemVazia)
+
 User = _reflection.GeneratedProtocolMessageType('User', (_message.Message,), {
   'DESCRIPTOR' : _USER,
   '__module__' : 'grpc_pb2'
@@ -54,14 +62,16 @@ _GREETER = DESCRIPTOR.services_by_name['Greeter']
 if _descriptor._USE_C_DESCRIPTORS == False:
 
   DESCRIPTOR._options = None
-  _USER._serialized_start=21
-  _USER._serialized_end=56
-  _USERS._serialized_start=58
-  _USERS._serialized_end=94
-  _REQUESTUPDATE._serialized_start=96
-  _REQUESTUPDATE._serialized_end=140
-  _REQUESTUSER._serialized_start=142
-  _REQUESTUSER._serialized_end=167
-  _GREETER._serialized_start=170
-  _GREETER._serialized_end=364
+  _MENSAGEMVAZIA._serialized_start=21
+  _MENSAGEMVAZIA._serialized_end=36
+  _USER._serialized_start=38
+  _USER._serialized_end=73
+  _USERS._serialized_start=75
+  _USERS._serialized_end=111
+  _REQUESTUPDATE._serialized_start=113
+  _REQUESTUPDATE._serialized_end=157
+  _REQUESTUSER._serialized_start=159
+  _REQUESTUSER._serialized_end=184
+  _GREETER._serialized_start=187
+  _GREETER._serialized_end=389
 # @@protoc_insertion_point(module_scope)

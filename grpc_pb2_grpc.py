@@ -27,7 +27,7 @@ class GreeterStub(object):
         self.deleteUser = channel.unary_unary(
                 '/greet.Greeter/deleteUser',
                 request_serializer=grpc__pb2.User.SerializeToString,
-                response_deserializer=grpc__pb2.Users.FromString,
+                response_deserializer=grpc__pb2.mensagemVazia.FromString,
                 )
         self.updateUser = channel.unary_unary(
                 '/greet.Greeter/updateUser',
@@ -79,7 +79,7 @@ def add_GreeterServicer_to_server(servicer, server):
             'deleteUser': grpc.unary_unary_rpc_method_handler(
                     servicer.deleteUser,
                     request_deserializer=grpc__pb2.User.FromString,
-                    response_serializer=grpc__pb2.Users.SerializeToString,
+                    response_serializer=grpc__pb2.mensagemVazia.SerializeToString,
             ),
             'updateUser': grpc.unary_unary_rpc_method_handler(
                     servicer.updateUser,
@@ -143,7 +143,7 @@ class Greeter(object):
             metadata=None):
         return grpc.experimental.unary_unary(request, target, '/greet.Greeter/deleteUser',
             grpc__pb2.User.SerializeToString,
-            grpc__pb2.Users.FromString,
+            grpc__pb2.mensagemVazia.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
 
