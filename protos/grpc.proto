@@ -7,21 +7,24 @@ service Greeter {
 	rpc getUser (requestUser) returns (Users) {}
 	rpc deleteUser (User) returns (Users) {}
 	rpc updateUser (requestUpdate) returns (Users) {}
+	rpc mensagemVazia (vazio) returns (vazio) {}
 }
+
+message mensagemVazia {}
 
 message User {
 	int64 id = 1;
-	string payload = 2;
+	string valores = 2;
 }
 
 message Users {
 	int64 id = 1;
-	string payload = 2;
+	string valores = 2;
 }
 
 message requestUpdate {
 	int64 id = 1;
-	string payload = 2;
+	string valores = 2;
 }
 
 message requestUser {
