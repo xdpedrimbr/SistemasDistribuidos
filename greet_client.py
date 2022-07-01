@@ -61,14 +61,13 @@ class ClientServicer:
                 return idBusca
 
     def deleteUser(self):
-        deleteById = int(input("Digite o ID do client: "))
-        response = self.getUser(deleteById)
+        responseUser = self.getUser()
 
         with grpc.insecure_channel('localhost:9090') as channel:
             stub = grpc_pb2_grpc.GreeterStub(channel)
 
-            if response:
-                response = stub.deleteUser(grpc_pb2.requestUser(id = deleteById))
+            if responseUser:
+                response = stub.deleteUser(grpc_pb2.requestUser(id = responseUser))
                 print("Client removido!")
             else:
                 print("Client not found")
