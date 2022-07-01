@@ -7,6 +7,7 @@ service Greeter {
 	rpc getUser (requestUser) returns (Users) {}
 	rpc deleteUser (User) returns (mensagemVazia) {}
 	rpc updateUser (requestUpdate) returns (Users) {}
+	rpc userList (mensagemVazia) returns (UserList) {}
 }
 
 message mensagemVazia {}
@@ -28,4 +29,8 @@ message requestUpdate {
 
 message requestUser {
 	int64 id = 1;
+}
+
+message UserList {
+	repeated User users = 1;
 }

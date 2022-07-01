@@ -34,6 +34,11 @@ class GreeterStub(object):
                 request_serializer=grpc__pb2.requestUpdate.SerializeToString,
                 response_deserializer=grpc__pb2.Users.FromString,
                 )
+        self.userList = channel.unary_unary(
+                '/greet.Greeter/userList',
+                request_serializer=grpc__pb2.mensagemVazia.SerializeToString,
+                response_deserializer=grpc__pb2.UserList.FromString,
+                )
 
 
 class GreeterServicer(object):
@@ -63,6 +68,12 @@ class GreeterServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def userList(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GreeterServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -85,6 +96,11 @@ def add_GreeterServicer_to_server(servicer, server):
                     servicer.updateUser,
                     request_deserializer=grpc__pb2.requestUpdate.FromString,
                     response_serializer=grpc__pb2.Users.SerializeToString,
+            ),
+            'userList': grpc.unary_unary_rpc_method_handler(
+                    servicer.userList,
+                    request_deserializer=grpc__pb2.mensagemVazia.FromString,
+                    response_serializer=grpc__pb2.UserList.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -161,5 +177,22 @@ class Greeter(object):
         return grpc.experimental.unary_unary(request, target, '/greet.Greeter/updateUser',
             grpc__pb2.requestUpdate.SerializeToString,
             grpc__pb2.Users.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def userList(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/greet.Greeter/userList',
+            grpc__pb2.mensagemVazia.SerializeToString,
+            grpc__pb2.UserList.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
