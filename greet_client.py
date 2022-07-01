@@ -58,7 +58,7 @@ class ClientServicer:
             if response.id == -1:
                 print("Client not found")
             else:
-                return response
+                return idBusca
 
     def deleteUser(self):
         deleteById = int(input("Digite o ID do client: "))
@@ -74,20 +74,20 @@ class ClientServicer:
                 print("Client not found")
 
     def updateUser(self):
-        updadeById = int(input("Digite o ID do client: "))
-        response = self.getUser(updadeById)
+        # updadeById = int(input("Digite o ID do client: "))
+        responseUser = self.getUser()
 
         with grpc.insecure_channel('localhost:9090') as channel:
             stub = grpc_pb2_grpc.GreeterStub(channel)
 
-            if response:
+            if responseUser:
                 nomeUser = input("Digite o nome do client: ")
                 emailUser = input("Digite o email do client: ")
 
                 dictValues = {"nome": nomeUser, "email": emailUser}
 
                 dictValuesString = str(dictValues)
-                response = stub.updateUser(grpc_pb2.requestUpdate(id = updadeById, valores = dictValuesString))
+                response = stub.updateUser(grpc_pb2.requestUpdate(id = responseUser, valores = dictValuesString))
 
                 print("Client atualizado!")
             else:
