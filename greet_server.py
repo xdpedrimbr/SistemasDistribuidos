@@ -54,7 +54,7 @@ class GreeterServicer(grpc_pb2_grpc.GreeterServicer):
 
         return usuarios
 
-    def mosquittoUser(self, request, context):
+    def userMosquitto(self, request, context):
         publish.single("user/client" + str(portaServer) + "/users", str(dictValues))
 
         response = grpc_pb2.mensagemVazia()
@@ -91,7 +91,7 @@ def serve(portaServer):
     grpc_pb2_grpc.add_GreeterServicer_to_server(GreeterServicer(), server)
     server.add_insecure_port("localhost:" + str(portaServer))
 
-    publish.single("user/client_" + str(portaServer) + "/users", str(dictValues))
+    ##publish.single("user/client_" + str(portaServer) + "/users", str(dictValues))
 
     print("Rodando na porta: " + str(portaServer))
     server.start()

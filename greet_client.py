@@ -78,7 +78,7 @@ class ClientServicer:
     def deleteUser(self):
         responseUser = self.getUser()
 
-        with grpc.insecure_channel('localhost:9090') as channel:
+        with grpc.insecure_channel('localhost:' + str(globalPort)) as channel:
             stub = grpc_pb2_grpc.GreeterStub(channel)
 
             if responseUser:
@@ -120,7 +120,7 @@ class ClientServicer:
         with grpc.insecure_channel('localhost:' + str(globalPort)) as channel:
             stub = grpc_pb2_grpc.GreeterStub(channel)
 
-            response = stub.mosquittoUser(grpc_pb2.mensagemVazia())
+            response = stub.userMosquitto(grpc_pb2.mensagemVazia())
             print(response)
         
 
