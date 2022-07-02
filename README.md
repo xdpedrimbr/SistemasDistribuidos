@@ -6,6 +6,7 @@ Os códigos foram construídos em Python (3.10) e, como sistema operacional, o U
 
 ## Testes
 Para fazer os testes, abra a pasta teste e copie e cole no terminal, o conteúdo dos arquivos .txt.
+Não foram implementadas todas as funções que foram pedidas na descrição do trabalho, faltou a de criação de tarefas.
 
 ## Dependências
 sudo apt install python3-pip <br />
