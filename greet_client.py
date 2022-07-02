@@ -24,7 +24,8 @@ class ClientServicer:
             print('3- Deletar Client')
             print('4- Update Client')
             print('5- Listar todos os Clients')
-            print('6- Finalizar sessao Client')
+            print('6- Mosquitto')
+            print('7- Finalizar sessao Client')
             rpc_call = input('Escolha o que voce gostaria de fazer: ')
 
             if rpc_call == "1":
@@ -37,8 +38,12 @@ class ClientServicer:
                 self.updateUser()
             elif rpc_call == "5":
                 self.listAllUsers()
+            elif rpc_call == "6":
+                self.pubsub()
+            else:
+                print('Nao existe essa opcao!')
             
-            if rpc_call == "6":
+            if rpc_call == "7":
                 print("Sessao Client finalizada")
                 break
                 
