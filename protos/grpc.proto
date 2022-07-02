@@ -8,6 +8,7 @@ service Greeter {
 	rpc deleteUser (User) returns (mensagemVazia) {}
 	rpc updateUser (requestUpdate) returns (Users) {}
 	rpc userList (mensagemVazia) returns (UserList) {}
+	rpc userMosquitto (mensagemVazia) returns (mensagemVazia) {}
 }
 
 message mensagemVazia {}

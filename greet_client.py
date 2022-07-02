@@ -3,38 +3,48 @@ import grpc
 import grpc_pb2
 import grpc_pb2_grpc
 
-class ClientServicer:
+
+class ClientServicer:        
+    def escolhaPortas(self):
+        while True:
+            print("Porta 1: 9091")
+            print("Porta 2: 9092")
+            print("Porta 3: 9093")
+            portaEscolha = int(input("Escolha a porta para iniciar: "))
+
+            if portaEscolha > 3 and portaEscolha < 1:
+                print("Escolha novamente, porta invalida!")
+            else:
+                return portaEscolha
+
     def run(self):
-        with grpc.insecure_channel('localhost:9090') as channel:
-            stub = grpc_pb2_grpc.GreeterStub(channel)
+        while True:
+            print('1- Criar Client')
+            print('2- Mostrar Client pelo ID')
+            print('3- Deletar Client')
+            print('4- Update Client')
+            print('5- Listar todos os Clients')
+            print('6- Finalizar sessao Client')
+            rpc_call = input('Escolha o que voce gostaria de fazer: ')
 
-            while True:
-                print('1- Criar Client')
-                print('2- Mostrar Client pelo ID')
-                print('3- Deletar Client')
-                print('4- Update Client')
-                print('5- Listar todos os Clients')
-                print('6- Finalizar sessao Client')
-                rpc_call = input('Escolha o que voce gostaria de fazer: ')
-
-                if rpc_call == "1":
-                    self.createUser()
-                elif rpc_call == "2":
-                    self.getUser()
-                elif rpc_call == "3":
-                    self.deleteUser()
-                elif rpc_call == "4":
-                    self.updateUser()
-                elif rpc_call == "5":
-                    self.listAllUsers()
-                
-                if rpc_call == "6":
-                    print("Sessao Client finalizada")
-                    break
+            if rpc_call == "1":
+                self.createUser()
+            elif rpc_call == "2":
+                self.getUser()
+            elif rpc_call == "3":
+                self.deleteUser()
+            elif rpc_call == "4":
+                self.updateUser()
+            elif rpc_call == "5":
+                self.listAllUsers()
             
+            if rpc_call == "6":
+                print("Sessao Client finalizada")
+                break
+                
 
     def createUser(self):
-        with grpc.insecure_channel('localhost:9090') as channel:
+        with grpc.insecure_channel('localhost:' + str(globalPort)) as channel:
             stub = grpc_pb2_grpc.GreeterStub(channel)
 
             nomeUser = input("Digite o nome do client: ")
@@ -47,7 +57,7 @@ class ClientServicer:
             return dictValues
 
     def getUser(self, idBusca = -1):
-        with grpc.insecure_channel('localhost:9090') as channel:
+        with grpc.insecure_channel('localhost:' + str(globalPort)) as channel:
             stub = grpc_pb2_grpc.GreeterStub(channel)
 
             idBusca = int(input("Digite o ID do client: "))
@@ -75,8 +85,8 @@ class ClientServicer:
     def updateUser(self):
         # updadeById = int(input("Digite o ID do client: "))
         responseUser = self.getUser()
-
-        with grpc.insecure_channel('localhost:9090') as channel:
+        
+        with grpc.insecure_channel('localhost:' + str(globalPort)) as channel:
             stub = grpc_pb2_grpc.GreeterStub(channel)
 
             if responseUser:
@@ -93,15 +103,39 @@ class ClientServicer:
                 print("Client not found")
 
     def listAllUsers(self):
-        with grpc.insecure_channel('localhost:9090') as channel:
+        with grpc.insecure_channel('localhost:' + str(globalPort)) as channel:
             stub = grpc_pb2_grpc.GreeterStub(channel)
 
             message = grpc_pb2.mensagemVazia()
             response = stub.userList(message)
 
             print(response)
+
+    def pubsub(self):
+        with grpc.insecure_channel('localhost:' + str(globalPort)) as channel:
+            stub = grpc_pb2_grpc.GreeterStub(channel)
+
+            response = stub.mosquittoUser(grpc_pb2.mensagemVazia())
+            print(response)
         
 
 if __name__ == "__main__":
-    client = ClientServicer()
-    client.run()
+    clientSer = ClientServicer()
+    global globalPort
+    port = clientSer.escolhaPortas()
+
+    aux = 0
+
+    print(port)
+    if port == 1:
+        aux = 9091
+    elif port == 2:
+        aux = 9092
+    elif port == 3:
+        aux = 9093
+
+    globalPort = aux
+
+    print("Conectando na porta " + str(aux))
+    
+    clientSer.run()

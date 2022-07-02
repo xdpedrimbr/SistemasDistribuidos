@@ -39,6 +39,11 @@ class GreeterStub(object):
                 request_serializer=grpc__pb2.mensagemVazia.SerializeToString,
                 response_deserializer=grpc__pb2.UserList.FromString,
                 )
+        self.userMosquitto = channel.unary_unary(
+                '/greet.Greeter/userMosquitto',
+                request_serializer=grpc__pb2.mensagemVazia.SerializeToString,
+                response_deserializer=grpc__pb2.mensagemVazia.FromString,
+                )
 
 
 class GreeterServicer(object):
@@ -74,6 +79,12 @@ class GreeterServicer(object):
         context.set_details('Method not implemented!')
         raise NotImplementedError('Method not implemented!')
 
+    def userMosquitto(self, request, context):
+        """Missing associated documentation comment in .proto file."""
+        context.set_code(grpc.StatusCode.UNIMPLEMENTED)
+        context.set_details('Method not implemented!')
+        raise NotImplementedError('Method not implemented!')
+
 
 def add_GreeterServicer_to_server(servicer, server):
     rpc_method_handlers = {
@@ -101,6 +112,11 @@ def add_GreeterServicer_to_server(servicer, server):
                     servicer.userList,
                     request_deserializer=grpc__pb2.mensagemVazia.FromString,
                     response_serializer=grpc__pb2.UserList.SerializeToString,
+            ),
+            'userMosquitto': grpc.unary_unary_rpc_method_handler(
+                    servicer.userMosquitto,
+                    request_deserializer=grpc__pb2.mensagemVazia.FromString,
+                    response_serializer=grpc__pb2.mensagemVazia.SerializeToString,
             ),
     }
     generic_handler = grpc.method_handlers_generic_handler(
@@ -194,5 +210,22 @@ class Greeter(object):
         return grpc.experimental.unary_unary(request, target, '/greet.Greeter/userList',
             grpc__pb2.mensagemVazia.SerializeToString,
             grpc__pb2.UserList.FromString,
+            options, channel_credentials,
+            insecure, call_credentials, compression, wait_for_ready, timeout, metadata)
+
+    @staticmethod
+    def userMosquitto(request,
+            target,
+            options=(),
+            channel_credentials=None,
+            call_credentials=None,
+            insecure=False,
+            compression=None,
+            wait_for_ready=None,
+            timeout=None,
+            metadata=None):
+        return grpc.experimental.unary_unary(request, target, '/greet.Greeter/userMosquitto',
+            grpc__pb2.mensagemVazia.SerializeToString,
+            grpc__pb2.mensagemVazia.FromString,
             options, channel_credentials,
             insecure, call_credentials, compression, wait_for_ready, timeout, metadata)

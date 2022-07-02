@@ -14,7 +14,7 @@ _sym_db = _symbol_database.Default()
 
 
 
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ngrpc.proto\x12\x05greet\"\x0f\n\rmensagemVazia\"#\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\"$\n\x05Users\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\",\n\rrequestUpdate\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\"\x19\n\x0brequestUser\x12\n\n\x02id\x18\x01 \x01(\x03\"&\n\x08UserList\x12\x1a\n\x05users\x18\x01 \x03(\x0b\x32\x0b.greet.User2\xff\x01\n\x07Greeter\x12)\n\ncreateUser\x12\x0b.greet.User\x1a\x0c.greet.Users\"\x00\x12-\n\x07getUser\x12\x12.greet.requestUser\x1a\x0c.greet.Users\"\x00\x12\x31\n\ndeleteUser\x12\x0b.greet.User\x1a\x14.greet.mensagemVazia\"\x00\x12\x32\n\nupdateUser\x12\x14.greet.requestUpdate\x1a\x0c.greet.Users\"\x00\x12\x33\n\x08userList\x12\x14.greet.mensagemVazia\x1a\x0f.greet.UserList\"\x00\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\ngrpc.proto\x12\x05greet\"\x0f\n\rmensagemVazia\"#\n\x04User\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\"$\n\x05Users\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\",\n\rrequestUpdate\x12\n\n\x02id\x18\x01 \x01(\x03\x12\x0f\n\x07valores\x18\x02 \x01(\t\"\x19\n\x0brequestUser\x12\n\n\x02id\x18\x01 \x01(\x03\"&\n\x08UserList\x12\x1a\n\x05users\x18\x01 \x03(\x0b\x32\x0b.greet.User2\xbe\x02\n\x07Greeter\x12)\n\ncreateUser\x12\x0b.greet.User\x1a\x0c.greet.Users\"\x00\x12-\n\x07getUser\x12\x12.greet.requestUser\x1a\x0c.greet.Users\"\x00\x12\x31\n\ndeleteUser\x12\x0b.greet.User\x1a\x14.greet.mensagemVazia\"\x00\x12\x32\n\nupdateUser\x12\x14.greet.requestUpdate\x1a\x0c.greet.Users\"\x00\x12\x33\n\x08userList\x12\x14.greet.mensagemVazia\x1a\x0f.greet.UserList\"\x00\x12=\n\ruserMosquitto\x12\x14.greet.mensagemVazia\x1a\x14.greet.mensagemVazia\"\x00\x62\x06proto3')
 
 
 
@@ -83,5 +83,5 @@ if _descriptor._USE_C_DESCRIPTORS == False:
   _USERLIST._serialized_start=186
   _USERLIST._serialized_end=224
   _GREETER._serialized_start=227
-  _GREETER._serialized_end=482
+  _GREETER._serialized_end=545
 # @@protoc_insertion_point(module_scope)
